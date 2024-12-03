@@ -1,11 +1,86 @@
-import React from 'react';
+import React from "react";
+import logo from "../../assets/Chill Gamer.png";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
-    return (
-        <div>
-            
+  return (
+    <footer className="bg-gray-900 text-white py-10">
+      <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center">
+        {/* Logo and Company Info */}
+        <div className="flex flex-col items-center lg:items-start mb-6 lg:mb-0">
+          <img className="size-20" src={logo} alt="" />
+          <p className="text-center">
+            Chill Gamer <br />
+            Your place for game reviews since 2024
+          </p>
         </div>
-    );
+
+        {/* Footer Links */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+          {/* Services */}
+          <div>
+            <h6 className="font-semibold text-lg mb-3">Services</h6>
+            <Link className="block text-gray-400 hover:text-white mb-2">
+              Game Reviews
+            </Link>
+            <Link className="block text-gray-400 hover:text-white mb-2">
+              Game News
+            </Link>
+            <Link className="block text-gray-400 hover:text-white">
+              Community Features
+            </Link>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h6 className="font-semibold text-lg mb-3">Company</h6>
+            <Link className="block text-gray-400 hover:text-white mb-2">
+              About Us
+            </Link>
+            <Link className="block text-gray-400 hover:text-white mb-2">
+              Contact
+            </Link>
+            <Link className="block text-gray-400 hover:text-white">
+              Careers
+            </Link>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h6 className="font-semibold text-lg mb-3">Legal</h6>
+            <Link className="block text-gray-400 hover:text-white mb-2">
+              Terms of Use
+            </Link>
+            <Link className="block text-gray-400 hover:text-white mb-2">
+              Privacy Policy
+            </Link>
+            <Link className="block text-gray-400 hover:text-white">
+              Cookie Policy
+            </Link>
+          </div>
+        </div>
+
+        {/* Social Links */}
+        <div className="mt-6 flex justify-center space-x-6">
+          <Link className="text-gray-400 hover:text-white">
+            <FaFacebook className="size-8"></FaFacebook>
+          </Link>
+          <Link className="text-gray-400 hover:text-white">
+            <FaInstagram className="size-8"></FaInstagram>
+          </Link>
+          <Link className="text-gray-400 hover:text-white">
+            <FaTwitter className="size-8"></FaTwitter>
+          </Link>
+        </div>
+      </div>
+
+      {/* Copyright Notice */}
+      <div className="mt-6 text-center text-white">
+        <p>Copyright © 2024 - All rights reserved by Chill Gamer</p>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;
