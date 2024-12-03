@@ -63,14 +63,30 @@ const Footer = () => {
 
         {/* Social Links */}
         <div className="mt-6 flex justify-center space-x-6">
-          <Link className="text-gray-400 hover:text-white">
-            <FaFacebook className="size-8"></FaFacebook>
+          <Link
+            to="https://www.facebook.com/rafiqul.islam.126222"
+            className="text-gray-400 hover:text-white"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaFacebook className="text-2xl" />
+            {/* Adjust the size using Tailwind */}
           </Link>
-          <Link className="text-gray-400 hover:text-white">
-            <FaInstagram className="size-8"></FaInstagram>
+          <Link
+            to="https://www.instagram.com/rafiqul._.islam/"
+            className="text-gray-400 hover:text-white"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaInstagram className="text-2xl" />
           </Link>
-          <Link className="text-gray-400 hover:text-white">
-            <FaTwitter className="size-8"></FaTwitter>
+          <Link
+            to="https://x.com/RAFIQUL81739959"
+            className="text-gray-400 hover:text-white"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaTwitter className="text-2xl" />
           </Link>
         </div>
       </div>
