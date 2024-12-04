@@ -1,11 +1,97 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import logo from "../../assets/Chill Gamer.png";
 
-const Navbar = ({ user, onLogout }) => {
+const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { logout, user } = useContext(AuthContext);
+
+  const links = (
+    <>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            `px-4 py-1 text-black ${
+              isActive ? "bg-green-400 text-black rounded-md" : "text-white"
+            }`
+          }
+          to="/"
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            `px-4 py-1 text-black ${
+              isActive ? "bg-green-400 text-black rounded-md" : "text-white"
+            }`
+          }
+          to="/reviews"
+        >
+          All Reviews
+        </NavLink>
+      </li>
+      {user && (
+        <>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                `px-4 py-1 text-black ${
+                  isActive ? "bg-green-400 text-black rounded-md" : "text-white"
+                }`
+              }
+              to="/addReview"
+            >
+              Add Review
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                `px-4 py-1 text-black ${
+                  isActive ? "bg-green-400 text-black rounded-md" : "text-white"
+                }`
+              }
+              to="/myReviews"
+            >
+              My Reviews
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                `px-4 py-1 text-black ${
+                  isActive ? "bg-green-400 text-black rounded-md" : "text-white"
+                }`
+              }
+              to="/myWatchlist"
+            >
+              Game Watchlist
+            </NavLink>
+          </li>
+        </>
+      )}
+    </>
+  );
+
+  // Handle click outside of the dropdown to close it
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (event.target.closest(".dropdown-container")) return;
+      setDropdownOpen(false);
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
-    <div className=" bg-red-400 text-white">
+    <div className="bg-red-400 text-white">
       <div className="w-11/12 mx-auto navbar">
         {/* Navbar Start */}
         <div className="navbar-start">
@@ -28,57 +114,20 @@ const Navbar = ({ user, onLogout }) => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-red-400 rounded-box z-[1] mt-3 w-36 p-2 shadow"
+              className="menu-sm dropdown-content gap-1 bg-red-400 rounded-box z-[1] mt-3 w-32 p-2 shadow"
             >
-              <li>
-                <NavLink to="/">Home</NavLink>
-              </li>
-              <li>
-                <NavLink to="/reviews">All Reviews</NavLink>
-              </li>
-              {user && (
-                <>
-                  <li>
-                    <NavLink to="/addReview">Add Review</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/myReviews">My Reviews</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/myWatchlist">Game Watchlist</NavLink>
-                  </li>
-                </>
-              )}
+              {links}
             </ul>
           </div>
-          <NavLink to="/" className="btn btn-ghost text-xl">
+          <NavLink to="/" className="btn btn-ghost text-xl md:text-3xl">
+            <img className="size-10" src={logo} alt="" />
             Chill Gamer
           </NavLink>
         </div>
 
         {/* Navbar Center */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/reviews">All Reviews</NavLink>
-            </li>
-            {user && (
-              <>
-                <li>
-                  <NavLink to="/addReview">Add Review</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/myReviews">My Reviews</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/myWatchlist">Game Watchlist</NavLink>
-                </li>
-              </>
-            )}
-          </ul>
+          <ul className="menu-horizontal text-xl gap-3 px-1">{links}</ul>
         </div>
 
         {/* Navbar End */}
@@ -93,26 +142,28 @@ const Navbar = ({ user, onLogout }) => {
               </NavLink>
             </div>
           ) : (
-            <div className="relative">
+            <div className="relative dropdown-container">
               <button
-                onClick={() => setDropdownOpen(!dropdownOpen)}
+                onClick={() => setDropdownOpen((prevState) => !prevState)}
                 className="flex items-center space-x-2 btn btn-ghost"
               >
                 <img
                   src={user.photoURL}
                   alt="User Avatar"
-                  className="w-8 h-8 rounded-full"
+                  className="w-10 h-10 rounded-full"
                 />
               </button>
               {dropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg">
-                  <div className="p-2 text-center">{user.displayName}</div>
-                  <button
-                    onClick={onLogout}
-                    className="block w-full text-left p-2 text-red-500 hover:bg-gray-200"
-                  >
-                    Log Out
-                  </button>
+                <div className="absolute -right-5 md:-right-9 lg:-right-16 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-50">
+                  <div className="p-2 text-center text-xl">{user.displayName}</div>
+                  <Link to="/">
+                    <button
+                      onClick={logout}
+                      className="block text-center text-lg z-50 w-full p-2 text-red-500 hover:bg-gray-200 rounded-md"
+                    >
+                      Log Out
+                    </button>
+                  </Link>
                 </div>
               )}
             </div>

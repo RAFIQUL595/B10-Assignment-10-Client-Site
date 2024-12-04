@@ -5,6 +5,10 @@ import AllReviews from "../AllReviews/AllReviews";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import AddReview from "../AddReview/AddReview";
+import MyReviews from "../MyReviews/MyReviews";
+import GameWatchList from "../GameWatchList/GameWatchList";
+import PrivetRouter from "../PrivetRouter/PrivetRouter";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +22,30 @@ const router = createBrowserRouter([
       {
         path: "/reviews",
         element: <AllReviews></AllReviews>,
+      },
+      {
+        path: "/addReview",
+        element: (
+          <PrivetRouter>
+            <AddReview></AddReview>
+          </PrivetRouter>
+        ),
+      },
+      {
+        path: "/myReviews",
+        element: (
+          <PrivetRouter>
+            <MyReviews></MyReviews>
+          </PrivetRouter>
+        ),
+      },
+      {
+        path: "/myWatchlist",
+        element: (
+          <PrivetRouter>
+            <GameWatchList></GameWatchList>
+          </PrivetRouter>
+        ),
       },
       {
         path: "*",

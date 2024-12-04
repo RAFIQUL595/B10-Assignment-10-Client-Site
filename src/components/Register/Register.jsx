@@ -4,12 +4,13 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
-  const { handelEmailLog, updateUser, user } = useContext(AuthContext);
+  const { handelEmailLog, updateUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const handelLogin = (event) => {
+  const handelRegister = (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
@@ -17,7 +18,7 @@ const Register = () => {
     const photo = form.photoURL.value;
     const password = form.password.value;
 
-    // Password validation criteria
+    // Password validation
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
 
     if (!passwordRegex.test(password)) {
@@ -54,8 +55,11 @@ const Register = () => {
   };
   return (
     <div className="flex justify-center items-center py-10 bg-gray-100">
+      <Helmet>
+        <title>Register | Chill Gamer</title>
+      </Helmet>
       <form
-        onSubmit={handelLogin}
+        onSubmit={handelRegister}
         className="bg-white p-8 rounded shadow-md w-96"
       >
         <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>

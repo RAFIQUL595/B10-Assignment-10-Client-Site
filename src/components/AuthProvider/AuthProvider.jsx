@@ -2,7 +2,11 @@ import React, { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.info";
 import {
   createUserWithEmailAndPassword,
+  GithubAuthProvider,
+  GoogleAuthProvider,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
 } from "firebase/auth";
@@ -16,6 +20,38 @@ const AuthProvider = ({ children }) => {
   // Register With Email and Password
   const handelEmailLog = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  // Sign in a user with an email address and password
+  const handelLogin = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  // Google Login
+  const handelGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      setUser(user);
+      return user;
+    } catch (error) {
+      setError(error.message);
+      throw error;
+    }
+  };
+
+  // GitHub Login
+  const handleGitHub = async () => {
+    const gitHubProvider = new GithubAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, gitHubProvider);
+      return result;
+    } catch (error) {
+      toast.error("GitHub Sign-In Error:", error.message);
+      throw error;
+    }
   };
 
   // Update user profile
@@ -70,6 +106,9 @@ const AuthProvider = ({ children }) => {
     logout,
     loading,
     error,
+    handelLogin,
+    handelGoogle,
+    handleGitHub,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
