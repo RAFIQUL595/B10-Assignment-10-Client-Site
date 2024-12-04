@@ -26,9 +26,6 @@ const TrendingGamesCard = ({ game }) => {
             ? `${game.description.slice(0, 100)}...`
             : game.description}
         </p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary btn-sm">Explore Details</button>
-        </div>
       </div>
     </div>
   );
