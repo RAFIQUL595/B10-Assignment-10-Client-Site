@@ -1,16 +1,19 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../Footer/Footer";
 
 const Root = () => {
+  const location = useLocation();
+  const is404Page = location.pathname === "*";
+
   return (
     <div>
-      <Navbar></Navbar>
+      {!is404Page && <Navbar></Navbar>}
       <div className="min-h-12 md:min-h-[336px] lg:min-h-[415px]">
         <Outlet></Outlet>
       </div>
-      <Footer></Footer>
+      {!is404Page && <Footer></Footer>}
     </div>
   );
 };
