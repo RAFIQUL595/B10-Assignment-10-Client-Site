@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import Banner from "../components/Banner/Banner";
+import TrendingGames from "../components/TrendingGames/TrendingGames";
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
         <title>Home | Chill Gamer</title>
       </Helmet>
       <Banner></Banner>
+      <TrendingGames></TrendingGames>
     </div>
   );
 };
