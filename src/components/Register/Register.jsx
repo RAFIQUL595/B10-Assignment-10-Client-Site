@@ -60,63 +60,73 @@ const Register = () => {
       </Helmet>
       <form
         onSubmit={handelRegister}
-        className="bg-white p-8 rounded shadow-md w-96"
+        className="bg-yellow-100 p-8 rounded shadow-md w-96"
       >
-        <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
+        <h2 className="text-3xl font-bold mb-4 text-center text-[#3498db]">
+          Register
+        </h2>
         <div className="mb-4">
-          <label className="block text-gray-700">Name</label>
+          <label className="block text-[#3498db] text-xl">
+            Name <span className="text-red-600">*</span>
+          </label>
           <input
             type="text"
             name="name"
-            className="w-full px-4 py-2 border rounded"
+            className="w-full px-4 py-2 border rounded text-lg"
             placeholder="Enter your name"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Email</label>
+          <label className="block text-[#3498db] text-xl">
+            Email <span className="text-red-600">*</span>
+          </label>
           <input
             type="email"
             name="email"
-            className="w-full px-4 py-2 border rounded"
+            className="w-full px-4 py-2 border rounded text-lg"
             placeholder="Enter your email"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">PhotoURL</label>
+          <label className="block text-[#3498db] text-xl">
+            PhotoURL <span className="text-red-600">*</span>
+          </label>
           <input
             type="text"
             name="photoURL"
-            className="w-full px-4 py-2 border rounded"
+            className="w-full px-4 py-2 border rounded text-lg"
             placeholder="Enter your photoURL"
             required
           />
         </div>
         <div className="mb-4 relative">
-          <label className="block text-gray-700">Password</label>
+          <label className="block text-[#3498db] text-xl">
+            Password <span className="text-red-600">*</span>
+          </label>
           <input
             type={passwordVisible ? "text" : "password"}
             name="password"
-            className="w-full px-4 py-2 border rounded"
+            className="w-full px-4 py-2 border rounded text-lg"
             placeholder="Enter your password"
             required
           />
           <button
             type="button"
             onClick={() => setPasswordVisible(!passwordVisible)}
-            className="absolute top-11 right-3 transform -translate-y-1/2"
+            className="absolute top-12 right-3 transform -translate-y-1/2"
           >
             {passwordVisible ? <FaEyeSlash /> : <FaEye />}
           </button>
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+          className="w-full bg-blue-500 text-white py-2 rounded text-xl hover:bg-blue-600 transition"
         >
           Register
         </button>
-        <div className="text-center mt-4">
+        <div className="text-center text-xl mt-4">
           <p>
             Already have an account?{" "}
             <Link to="/login">

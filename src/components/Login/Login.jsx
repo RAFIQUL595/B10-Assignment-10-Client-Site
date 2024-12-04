@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGithub } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../AuthProvider/AuthProvider";
@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 
 const Login = () => {
   const { handelLogin, handelGoogle, handleGitHub } = useContext(AuthContext);
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   const handelLoginFrom = (event) => {
@@ -71,51 +72,60 @@ const Login = () => {
       </Helmet>
       <form
         onSubmit={handelLoginFrom}
-        className="bg-white p-8 rounded shadow-md w-96"
+        className="bg-yellow-100 p-8 rounded shadow-md w-96"
       >
-        <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
+        <h2 className="text-3xl font-bold mb-4 text-center text-[#3498db]">Login</h2>
         <div className="mb-4">
-          <label className="block text-gray-700">Email</label>
+          <label className="block text-[#3498db] text-xl">Email <span className="text-red-600">*</span></label>
           <input
             type="email"
             name="email"
-            className="w-full px-4 py-2 border rounded"
+            className="w-full px-4 py-2 border rounded text-lg"
             placeholder="Enter your email"
             required
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Password</label>
+        <div className="mb-4 relative">
+          <label className="block text-[#3498db] text-xl">
+            Password <span className="text-red-600">*</span>
+          </label>
           <input
-            type="password"
+            type={passwordVisible ? "text" : "password"}
             name="password"
-            className="w-full px-4 py-2 border rounded"
+            className="w-full px-4 py-2 border rounded text-lg"
             placeholder="Enter your password"
             required
           />
+          <button
+            type="button"
+            onClick={() => setPasswordVisible(!passwordVisible)}
+            className="absolute top-12 right-3 transform -translate-y-1/2"
+          >
+            {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+          </button>
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition text-xl"
         >
           Login
         </button>
         <button
           type="button"
           onClick={handleGoogleLogin}
-          className="w-full btn py-2 rounded mt-4 transition"
+          className="w-full btn py-2 rounded mt-4 transition text-xl"
         >
           <FcGoogle></FcGoogle> Login with Google
         </button>
         <button
           type="button"
           onClick={handleGitHubLogin}
-          className="w-full btn py-2 rounded mt-4 transition"
+          className="w-full btn py-2 rounded mt-4 transition text-xl"
         >
           <FaGithub></FaGithub> Login with GitHub
         </button>
 
-        <div className="text-center mt-4">
+        <div className="text-center text-xl mt-4">
           <p>
             Don't have an account?{" "}
             <Link to="/register">

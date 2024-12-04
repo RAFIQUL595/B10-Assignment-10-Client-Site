@@ -135,10 +135,10 @@ const Navbar = () => {
           {!user ? (
             <div className="flex space-x-2">
               <NavLink to="/login" className="btn btn-outline">
-                <span className="text-white">Login</span>
+                <span className="text-white text-xl">Login</span>
               </NavLink>
               <NavLink to="/register" className="btn btn-outline">
-                <span className="text-white">Register</span>
+                <span className="text-white text-xl">Register</span>
               </NavLink>
             </div>
           ) : (
@@ -156,10 +156,11 @@ const Navbar = () => {
               {dropdownOpen && (
                 <div className="absolute -right-5 md:-right-9 lg:-right-16 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-50">
                   <div className="p-2 text-center text-xl">{user.displayName}</div>
+                  <hr />
                   <Link to="/">
                     <button
                       onClick={logout}
-                      className="block text-center text-lg z-50 w-full p-2 text-red-500 hover:bg-gray-200 rounded-md"
+                      className="block text-center text-xl z-50 w-full p-2 text-red-500 hover:bg-gray-200 rounded-md"
                     >
                       Log Out
                     </button>
