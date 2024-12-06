@@ -29,11 +29,11 @@ const AllReviews = () => {
               <div className="p-5">
                 <div className="flex justify-between">
                   <div className="flex gap-2">
-                    <span className="underline font-bold text-xl">Title:</span>
+                    <span className="font-bold text-xl">Title:</span>
                     <span className="text-lg">{review.gameTitle}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="underline font-bold text-xl">Rating:</span>
+                    <span className="font-bold text-xl">Rating:</span>
                     <p className="flex items-center gap-2">
                       <span className="text-lg">{review.rating}</span>
                       <span className="text-white bg-yellow-400 rounded-full">
@@ -44,13 +44,13 @@ const AllReviews = () => {
                 </div>
                 <div className="flex justify-between">
                   <p>
-                    <span className="underline font-bold text-xl mr-2">
+                    <span className="font-bold text-xl mr-2">
                       Year:
                     </span>
                     <span className="text-lg">{review.publishingYear}</span>
                   </p>
                   <p>
-                    <span className="underline font-bold text-xl mr-2">
+                    <span className="font-bold text-xl mr-2">
                       Genre:
                     </span>
                     <span className="text-lg">{review.genre}</span>

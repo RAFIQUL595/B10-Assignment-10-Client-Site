@@ -1,12 +1,9 @@
 import React, { useContext, useEffect } from "react";
 
-
 import { MdStar } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const HighestRatedGames = ({ highestRated }) => {
-
-
   return (
     <div className="w-11/12 mx-auto mb-10">
       <h2 className="text-center text-3xl font-bold">Highest Rated Games</h2>
@@ -21,15 +18,11 @@ const HighestRatedGames = ({ highestRated }) => {
                 <div className="p-5">
                   <div className="flex justify-between">
                     <div className="flex gap-2">
-                      <span className="underline font-bold text-xl">
-                        Title:
-                      </span>
+                      <span className="font-bold text-xl">Title:</span>
                       <span className="text-lg">{game.gameTitle}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="underline font-bold text-xl">
-                        Rating:
-                      </span>
+                      <span className="font-bold text-xl">Rating:</span>
                       <p className="flex items-center gap-2">
                         <span className="text-lg">{game.rating}</span>{" "}
                         <span className="text-white bg-yellow-400 rounded-full">
