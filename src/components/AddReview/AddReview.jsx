@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddReview = () => {
   const genres = [
@@ -12,14 +13,60 @@ const AddReview = () => {
     "Simulation",
   ];
   const { user } = useContext(AuthContext);
-  console.log(user);
+
+  const handelAddReview = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const userName = form.userName.value;
+    const userEmail = form.userEmail.value;
+    const gameCover = form.gameCover.value;
+    const gameTitle = form.gameTitle.value;
+    const rating = form.rating.value;
+    const publishingYear = form.publishingYear.value;
+    const genre = form.genre.value;
+    const reviewDescription = form.reviewDescription.value;
+
+    const data = {
+      userName,
+      userEmail,
+      gameCover,
+      gameTitle,
+      rating,
+      publishingYear,
+      genre,
+      reviewDescription,
+    };
+
+    fetch("http://localhost:5000/reviews", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Review Added Successful",
+            icon: "success",
+          });
+        }
+        form.reset();
+      });
+  };
+
   return (
     <div className="container mx-auto py-10 px-4 max-w-3xl">
       <Helmet>
         <title>Add Review | Chill Gamer</title>
       </Helmet>
       <h2 className="text-3xl font-bold text-center mb-6">Add New Review</h2>
-      <form className="bg-yellow-100 p-6 rounded-lg shadow-md border">
+      <form
+        onSubmit={handelAddReview}
+        className="bg-yellow-100 p-6 rounded-lg shadow-md border"
+      >
         {/* User  Name */}
         <div className="mb-4">
           <label className="block font-semibold mb-2 text-xl text-[#3498db]">

@@ -2,6 +2,11 @@ import React, { useContext, useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import logo from "../../assets/Chill Gamer.png";
+import { IoHomeOutline } from "react-icons/io5";
+import { IoIosMenu, IoIosAddCircleOutline } from "react-icons/io";
+import { MdReviews } from "react-icons/md";
+import { FaGamepad, FaUserPlus } from "react-icons/fa";
+import { CiLogin, CiLogout } from "react-icons/ci";
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -9,66 +14,67 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li>
+      <li className="flex items-center space-x-2">
         <NavLink
           className={({ isActive }) =>
-            `px-4 py-1 text-black ${
+            `px-4 py-2 flex items-center text-black ${
               isActive ? "bg-green-400 text-black rounded-md" : "text-white"
             }`
           }
           to="/"
         >
+          <IoHomeOutline className="mr-2 text-xl" />
           Home
         </NavLink>
       </li>
-      <li>
+      <li className="flex items-center space-x-2">
         <NavLink
           className={({ isActive }) =>
-            `px-4 py-1 text-black ${
+            `px-4 py-2 flex items-center text-black ${
               isActive ? "bg-green-400 text-black rounded-md" : "text-white"
             }`
           }
           to="/reviews"
         >
-          All Reviews
+          <IoIosMenu className="mr-2 text-xl" /> All Reviews
         </NavLink>
       </li>
       {user && (
         <>
-          <li>
+          <li className="flex items-center space-x-2">
             <NavLink
               className={({ isActive }) =>
-                `px-4 py-1 text-black ${
+                `px-4 py-2 flex items-center text-black ${
                   isActive ? "bg-green-400 text-black rounded-md" : "text-white"
                 }`
               }
               to="/addReview"
             >
-              Add Review
+              <IoIosAddCircleOutline className="mr-2 text-xl" /> Add Review
             </NavLink>
           </li>
-          <li>
+          <li className="flex items-center space-x-2">
             <NavLink
               className={({ isActive }) =>
-                `px-4 py-1 text-black ${
+                `px-4 py-2 flex items-center text-black ${
                   isActive ? "bg-green-400 text-black rounded-md" : "text-white"
                 }`
               }
               to="/myReviews"
             >
-              My Reviews
+              <MdReviews className="mr-2 text-xl" /> My Reviews
             </NavLink>
           </li>
-          <li>
+          <li className="flex items-center space-x-2">
             <NavLink
               className={({ isActive }) =>
-                `px-4 py-1 text-black ${
+                `px-4 py-2 flex items-center text-black ${
                   isActive ? "bg-green-400 text-black rounded-md" : "text-white"
                 }`
               }
               to="/myWatchlist"
             >
-              Game Watchlist
+              <FaGamepad className="mr-2 text-xl" /> Game Watchlist
             </NavLink>
           </li>
         </>
@@ -114,13 +120,13 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu-sm dropdown-content gap-1 bg-red-400 rounded-box z-[1] mt-3 w-32 p-2 shadow"
+              className="menu-sm dropdown-content gap-1 bg-red-400 rounded-box z-[1] mt-3 w-36 p-2 shadow"
             >
               {links}
             </ul>
           </div>
-          <NavLink to="/" className="btn btn-ghost text-xl md:text-3xl">
-            <img className="size-10" src={logo} alt="" />
+          <NavLink to="/" className="flex items-center gap-2 text-2xl md:text-3xl">
+            <img className="size-10 hidden md:block" src={logo} alt="" />
             Chill Gamer
           </NavLink>
         </div>
@@ -135,10 +141,14 @@ const Navbar = () => {
           {!user ? (
             <div className="flex space-x-2">
               <NavLink to="/login" className="btn btn-outline">
-                <span className="text-white text-xl">Login</span>
+                <span className="text-white text-xl flex items-center">
+
+                  <CiLogin className="mr-2" />
+                  Login
+                </span>
               </NavLink>
               <NavLink to="/register" className="btn btn-outline">
-                <span className="text-white text-xl">Register</span>
+                <span className="text-white text-xl flex items-center"> <FaUserPlus className="mr-2" />Register</span>
               </NavLink>
             </div>
           ) : (
@@ -155,14 +165,16 @@ const Navbar = () => {
               </button>
               {dropdownOpen && (
                 <div className="absolute -right-5 md:-right-9 lg:-right-16 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-50">
-                  <div className="p-2 text-center text-xl">{user.displayName}</div>
+                  <div className="p-2 text-center text-xl">
+                    {user.displayName}
+                  </div>
                   <hr />
                   <Link to="/">
                     <button
                       onClick={logout}
-                      className="block text-center text-xl z-50 w-full p-2 text-red-500 hover:bg-gray-200 rounded-md"
+                      className="flex items-center justify-center text-xl z-50 w-full p-2 text-red-500 hover:bg-gray-200 rounded-md"
                     >
-                      Log Out
+                      <CiLogout className="mr-2" /> Log Out
                     </button>
                   </Link>
                 </div>

@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="flex flex-col items-center lg:items-start mb-6 lg:mb-0">
           <img className="size-20" src={logo} alt="" />
           <p className="text-center">
-            Chill Gamer <br />
+            <span className="text-3xl">Chill Gamer</span> <br />
             Your place for game reviews since 2024
           </p>
         </div>
