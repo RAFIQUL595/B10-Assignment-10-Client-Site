@@ -1,11 +1,13 @@
-import React from "react";
+import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { MdStar } from "react-icons/md";
-
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const ReviewDetails = () => {
   const loaderDetailsId = useLoaderData();
+  const { user } = useContext(AuthContext);
   const {
     gameCover,
     gameTitle,
@@ -15,6 +17,35 @@ const ReviewDetails = () => {
     userName,
     userEmail,
   } = loaderDetailsId;
+
+  // Add to WatchList on database
+  const handelWatchList = () => {
+    fetch("http://localhost:5000/watchlist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        gameCover,
+        gameTitle,
+        reviewDescription,
+        rating,
+        genre,
+        userName: user.displayName,
+        userEmail: user.email,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Added to WatchList Successfully",
+            icon: "success",
+          });
+        }
+      });
+  };
 
   return (
     <div className="w-11/12 mx-auto">
@@ -62,7 +93,12 @@ const ReviewDetails = () => {
           </div>
 
           <div className="card-actions justify-center">
-            <button className="btn btn-primary text-lg">Add to WatchList</button>
+            <button
+              onClick={handelWatchList}
+              className="btn btn-primary text-lg"
+            >
+              Add to WatchList
+            </button>
           </div>
         </div>
       </div>

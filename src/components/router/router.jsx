@@ -55,6 +55,7 @@ const router = createBrowserRouter([
             <GameWatchList></GameWatchList>
           </PrivetRouter>
         ),
+        loader: () => fetch("http://localhost:5000/watchlist"),
       },
       {
         path: "*",
