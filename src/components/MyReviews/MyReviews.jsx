@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Helmet } from "react-helmet";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -65,25 +65,29 @@ const MyReviews = () => {
         <div className="overflow-x-auto md:w-4/6 mx-auto">
           <table className="table border border-gray-300 w-full table-zebra">
             <thead className="text-lg">
-              <tr>
+              <tr className="text-center">
                 <th>#</th>
                 <th>User Name</th>
                 <th>User Email</th>
                 <th>Game Title</th>
                 <th>Genre</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody className="text-lg">
               {userReviews.map((review, index) => (
-                <tr key={review._id}>
+                <tr className="text-center" key={review._id}>
                   <td>{index + 1}</td>
                   <td>{review.userName}</td>
                   <td>{review.userEmail}</td>
                   <td>{review.gameTitle}</td>
+                  <td>{review.genre}</td>
                   <td className="py-2 px-4 text-center">
-                    <button className="bg-blue-500 text-white py-1 px-3 rounded mr-2 hover:bg-blue-600">
-                      Update
-                    </button>
+                    <Link to={`/updateReview/${review._id}`}>
+                      <button className="bg-blue-500 text-white py-1 px-3 rounded mr-2 hover:bg-blue-600">
+                        Update
+                      </button>
+                    </Link>
                     <button
                       onClick={() => handleDeleteReview(review._id)}
                       className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600"

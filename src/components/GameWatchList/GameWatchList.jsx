@@ -70,20 +70,20 @@ const GameWatchList = () => {
         <div className="overflow-x-auto md:w-4/6 mx-auto">
           <table className="table border border-gray-300 w-full table-zebra">
             <thead className="text-lg">
-              <tr>
+              <tr className="text-center">
                 <th>#</th>
                 <th>Game Cover</th>
                 <th>Game Title</th>
                 <th>Genre</th>
                 <th>Rating</th>
-                <th>Delete</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody className="text-lg">
               {userWatchlist.map((game, index) => (
-                <tr key={game._id}>
+                <tr className="text-center" key={game._id}>
                   <td>{index + 1}</td>
-                  <td>
+                  <td className="flex justify-center items-center">
                     <img
                       className="w-20"
                       src={game.gameCover}
