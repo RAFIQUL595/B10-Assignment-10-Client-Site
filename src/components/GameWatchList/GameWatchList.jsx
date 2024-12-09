@@ -23,7 +23,7 @@ const GameWatchList = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/watchlist/${id}`, {
+        fetch(`https://chill-gamer-server-three-gilt.vercel.app/watchlist/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

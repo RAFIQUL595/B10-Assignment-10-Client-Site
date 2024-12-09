@@ -20,18 +20,18 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/reviews/limit"),
+        loader: () => fetch("https://chill-gamer-server-three-gilt.vercel.app/reviews/limit"),
       },
       {
         path: "/reviews",
         element: <AllReviews></AllReviews>,
-        loader: () => fetch("http://localhost:5000/reviews"),
+        loader: () => fetch("https://chill-gamer-server-three-gilt.vercel.app/reviews"),
       },
       {
         path: "/reviews/:id",
         element: <ReviewDetails></ReviewDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/reviews/${params.id}`),
+          fetch(`https://chill-gamer-server-three-gilt.vercel.app/reviews/${params.id}`),
       },
       {
         path: "/addReview",
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
             <MyReviews></MyReviews>
           </PrivetRouter>
         ),
-        loader: () => fetch("http://localhost:5000/myReviews"),
+        loader: () => fetch("https://chill-gamer-server-three-gilt.vercel.app/myReviews"),
       },
       {
         path: "/myWatchlist",
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
             <GameWatchList></GameWatchList>
           </PrivetRouter>
         ),
-        loader: () => fetch("http://localhost:5000/watchlist"),
+        loader: () => fetch("https://chill-gamer-server-three-gilt.vercel.app/watchlist"),
       },
       {
         path: "/updateReview/:id",
