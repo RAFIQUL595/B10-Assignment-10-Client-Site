@@ -27,9 +27,7 @@ const UpdateReview = () => {
       .then((data) => {
         setReview(data);
       })
-      .catch((error) => {
-        console.error("Error fetching review:", error);
-      });
+      .catch((error) => {});
   }, [id]);
 
   const handleUpdateReview = (event) => {
@@ -54,13 +52,16 @@ const UpdateReview = () => {
       genre,
       reviewDescription,
     };
-    fetch(`https://chill-gamer-server-three-gilt.vercel.app/updateReview/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedData),
-    })
+    fetch(
+      `https://chill-gamer-server-three-gilt.vercel.app/updateReview/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -79,7 +80,6 @@ const UpdateReview = () => {
         }
       })
       .catch((error) => {
-        console.error("Error updating review:", error);
         Swal.fire({
           title: "Error!",
           text: "Failed to update review. Please try again later.",
