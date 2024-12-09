@@ -27,7 +27,8 @@ const UpdateReview = () => {
       .then((data) => {
         setReview(data);
       })
-      .catch((error) => {});
+      .catch((error) => {
+      });
   }, [id]);
 
   const handleUpdateReview = (event) => {
@@ -52,16 +53,13 @@ const UpdateReview = () => {
       genre,
       reviewDescription,
     };
-    fetch(
-      `https://chill-gamer-server-three-gilt.vercel.app/updateReview/${id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      }
-    )
+    fetch(`https://chill-gamer-server-three-gilt.vercel.app/updateReview/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
