@@ -7,17 +7,32 @@ import { IoIosMenu, IoIosAddCircleOutline } from "react-icons/io";
 import { MdReviews } from "react-icons/md";
 import { FaGamepad, FaUserPlus } from "react-icons/fa";
 import { CiLogin, CiLogout } from "react-icons/ci";
+import "react-tooltip/dist/react-tooltip.css";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { logout, user } = useContext(AuthContext);
+  const [darkMode, setDarkMode] = useState(
+    () => localStorage.getItem("theme") === "dark"
+  );
+
+  useEffect(() => {
+    const theme = darkMode ? "dark" : "light";
+    document.body.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [darkMode]);
+
+  const handleToggleTheme = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
 
   const links = (
     <>
       <li className="flex items-center space-x-2">
         <NavLink
           className={({ isActive }) =>
-            `px-4 py-2 flex items-center text-black ${
+            `px-4 py-2 flex items-center ${
               isActive ? "bg-green-400 text-black rounded-md" : "text-white"
             }`
           }
@@ -30,13 +45,14 @@ const Navbar = () => {
       <li className="flex items-center space-x-2">
         <NavLink
           className={({ isActive }) =>
-            `px-4 py-2 flex items-center text-black ${
+            `px-4 py-2 flex items-center ${
               isActive ? "bg-green-400 text-black rounded-md" : "text-white"
             }`
           }
           to="/reviews"
         >
-          <IoIosMenu className="mr-2 text-xl" /> All Reviews
+          <IoIosMenu className="mr-2 text-xl" />
+          All Reviews
         </NavLink>
       </li>
       {user && (
@@ -44,37 +60,40 @@ const Navbar = () => {
           <li className="flex items-center space-x-2">
             <NavLink
               className={({ isActive }) =>
-                `px-4 py-2 flex items-center text-black ${
+                `px-4 py-2 flex items-center ${
                   isActive ? "bg-green-400 text-black rounded-md" : "text-white"
                 }`
               }
               to="/addReview"
             >
-              <IoIosAddCircleOutline className="mr-2 text-xl" /> Add Review
+              <IoIosAddCircleOutline className="mr-2 text-xl" />
+              Add Review
             </NavLink>
           </li>
           <li className="flex items-center space-x-2">
             <NavLink
               className={({ isActive }) =>
-                `px-4 py-2 flex items-center text-black ${
+                `px-4 py-2 flex items-center ${
                   isActive ? "bg-green-400 text-black rounded-md" : "text-white"
                 }`
               }
               to="/myReviews"
             >
-              <MdReviews className="mr-2 text-xl" /> My Reviews
+              <MdReviews className="mr-2 text-xl" />
+              My Reviews
             </NavLink>
           </li>
           <li className="flex items-center space-x-2">
             <NavLink
               className={({ isActive }) =>
-                `px-4 py-2 flex items-center text-black ${
+                `px-4 py-2 flex items-center ${
                   isActive ? "bg-green-400 text-black rounded-md" : "text-white"
                 }`
               }
               to="/myWatchlist"
             >
-              <FaGamepad className="mr-2 text-xl" /> Game Watchlist
+              <FaGamepad className="mr-2 text-xl" />
+              Game Watchlist
             </NavLink>
           </li>
         </>
@@ -82,7 +101,6 @@ const Navbar = () => {
     </>
   );
 
-  // Handle click outside of the dropdown to close it
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (event.target.closest(".dropdown-container")) return;
@@ -90,7 +108,6 @@ const Navbar = () => {
     };
 
     document.addEventListener("click", handleClickOutside);
-
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
@@ -125,7 +142,10 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <NavLink to="/" className="flex items-center gap-2 text-2xl md:text-3xl">
+          <NavLink
+            to="/"
+            className="flex items-center gap-2 text-2xl md:text-3xl"
+          >
             <img className="size-10 hidden md:block" src={logo} alt="" />
             Chill Gamer
           </NavLink>
@@ -137,18 +157,34 @@ const Navbar = () => {
         </div>
 
         {/* Navbar End */}
-        <div className="navbar-end">
+        <div className="navbar-end gap-2">
+          {/* Dark Mode Toggle */}
+          <div
+            data-tooltip-id="my-tooltip"
+            data-tooltip-content="Toggle Dark Mode"
+            className="flex items-center"
+          >
+            <input
+              type="checkbox"
+              className="toggle"
+              checked={darkMode}
+              onChange={handleToggleTheme}
+            />
+          </div>
+          <Tooltip id="my-tooltip" />
           {!user ? (
             <div className="flex space-x-2">
               <NavLink to="/login" className="btn btn-outline">
                 <span className="text-white text-xl flex items-center">
-
                   <CiLogin className="mr-2" />
                   Login
                 </span>
               </NavLink>
               <NavLink to="/register" className="btn btn-outline">
-                <span className="text-white text-xl flex items-center"> <FaUserPlus className="mr-2" />Register</span>
+                <span className="text-white text-xl flex items-center">
+                  <FaUserPlus className="mr-2" />
+                  Register
+                </span>
               </NavLink>
             </div>
           ) : (
@@ -174,7 +210,8 @@ const Navbar = () => {
                       onClick={logout}
                       className="flex items-center justify-center text-xl z-50 w-full p-2 text-red-500 hover:bg-gray-200 rounded-md"
                     >
-                      <CiLogout className="mr-2" /> Log Out
+                      <CiLogout className="mr-2" />
+                      Log Out
                     </button>
                   </Link>
                 </div>

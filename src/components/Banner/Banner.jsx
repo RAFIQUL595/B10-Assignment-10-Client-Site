@@ -1,6 +1,7 @@
 import React from "react";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
+import { Typewriter } from "react-simple-typewriter";
 
 const Banner = () => {
   const slides = [
@@ -24,6 +25,20 @@ const Banner = () => {
 
   return (
     <div className="w-11/12 mx-auto my-10 rounded-lg">
+         <h1 className="text-center text-xl mb-5">
+        Welcome to{" "}
+        <span style={{ color: "blue" }}>
+          <Typewriter
+            words={["Chill Gamer"]}
+            loop
+            cursor
+            cursorStyle="|"
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+          />
+        </span>
+      </h1>
       <div className="relative w-full ">
         <Slide autoplay={true} duration={5000} transitionDuration={1000}>
           {slides.map((slide, index) => (
