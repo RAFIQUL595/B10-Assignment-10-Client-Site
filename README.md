@@ -12,6 +12,8 @@ Technologies Used:
 
 <li>React</li>
 
+<li>React Router DOM</li>
+
 <li>Firebase</li>
 
 <li>AOS (Animate on Scroll)</li>
