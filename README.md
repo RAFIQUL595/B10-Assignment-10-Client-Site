@@ -12,8 +12,6 @@ Technologies Used:
 
 <li>Firebase</li>
 
-React Router DOM
-
 <li>AOS (Animate on Scroll)</li>
 
 <li>LocalForage</li>
