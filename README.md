@@ -2,7 +2,7 @@
 
 <li>Chill Gamer</li>
 
-**Live site URL**
+Live project link:
 
 https://chill-gamer-e6052.web.app/
 
