@@ -76,7 +76,7 @@ How to Run Locally
 
 Clone the repository:
 
-git clone https://github.com/your-username/your-repository.git
+git clone https://github.com/RAFIQUL595/your-repository.git
 
 Navigate to the project directory:
 
