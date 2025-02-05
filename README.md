@@ -76,7 +76,7 @@ How to Run Locally
 
 Clone the repository:
 
-git clone https://github.com/RAFIQUL595/your-repository.git
+[git clone https://github.com/RAFIQUL595/your-repository.git](https://github.com/RAFIQUL595/B10-Assignment-10-Client-Site.git)
 
 Navigate to the project directory:
 
