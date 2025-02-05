@@ -41,10 +41,33 @@ Technologies Used:
 <li>SweetAlert2</li>
 
 
-**Five bullet points feature website.**
+**Feature website.**
 
 <li>Watchlist Management</li>
 <li>Sorting and Filtering</li>
 <li>Dark/Light Theme Toggle</li>
 <li>Conditional Navbar</li>
 <li>Animations package used</li>
+
+**Dependencies used**
+
+{
+  "dependencies": {
+    "aos": "^2.3.4",
+    "firebase": "^11.0.2",
+    "localforage": "^1.10.0",
+    "match-sorter": "^8.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^5.4.0",
+    "react-router-dom": "^7.0.2",
+    "react-simple-typewriter": "^5.0.1",
+    "react-slideshow-image": "^4.3.2",
+    "react-spinners": "^0.14.1",
+    "react-tooltip": "^5.28.0",
+    "sort-by": "^1.2.0",
+    "sweetalert2": "^11.14.5"
+  }
+}
